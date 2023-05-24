@@ -1,0 +1,50 @@
+.regular-container {
+	padding: 20px;
+	background-color: white;
+}
+
+.memes-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	background-color: rgb(190, 223, 222);
+}
+
+h3{
+	color:ghostwhite
+}
+
+.col-md-8 {
+	margin: 10px;
+	width: 300px;
+	background-color: #323030;
+	border: 1px solid #080808;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.img-fluid{
+	max-width: 100%;
+	height: auto;
+	border: 1px solid white;
+}
+
+.card-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.likes-count {
+	color: ghostwhite;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.btn {
+	margin: 5px;
+}

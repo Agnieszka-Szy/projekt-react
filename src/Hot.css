@@ -1,0 +1,44 @@
+.regular-container {
+	padding: 20px;
+	background-color: white;
+}
+
+.memes-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.meme-card {
+	margin: 10px;
+	width: 300px;
+	border: 1px solid #383434;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.img-fluid{
+	width: 100%;
+	height: auto;
+}
+
+
+.card-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.likes-count {
+	margin-bottom: 0.5rem;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.btn {
+	margin: 5px;
+}
