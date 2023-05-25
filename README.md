@@ -1,3 +1,17 @@
+PROJEKT ZALICZENIOWY - PROGRAMISTA FRONT-END Z ANGULAR 2023  gr.2
+
+Autor: Agnieszka Szymańska
+maj 2023
+
+Zastosowane technologie i dodatki:
+- React
+- Bootstrap 5.3
+- Notatki z zajęć 
+
+Przed uruchomieniem wymagana instalacja node modules (`npm i`)
+
+****
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
