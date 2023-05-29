@@ -1,19 +1,18 @@
-import './Regular.css';
+import './Memes.css'
 import React from 'react';
-import AddMemeForm from './AddMemeForm';
 
-function Regular({ memes, handleUpvote, handleDownvote, handleAddMeme }) {
-	const addMeme = (newMeme) => {
-		handleAddMeme(newMeme);
-	};
+function Memes({ memes, handleUpvote, handleDownvote, isHot }) {
 	return (
 		<div className='regular-container p-0'>
 			<section className='memes-container'>
 				<div className='row justify-content-center'>
-					<AddMemeForm handleAddMeme={addMeme} />
-					<h2>Lista memów</h2>
+					<h2>{isHot ? 'Mocarne memy:' : 'Lista memów'}</h2>
 					{memes
-						.filter((meme) => meme.likes - meme.dislikes <= 5)
+						.filter((meme) =>
+							isHot
+								? meme.likes - meme.dislikes > 5
+								: meme.likes - meme.dislikes <= 5
+						)
 						.map((meme) => (
 							<div
 								className='meme-card text-center col-md-8 mt-5 mb-5'
@@ -50,4 +49,4 @@ function Regular({ memes, handleUpvote, handleDownvote, handleAddMeme }) {
 	);
 }
 
-export default Regular;
+export default Memes;

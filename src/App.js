@@ -1,9 +1,9 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './Navigation';
-import Regular from './Regular';
-import Hot from './Hot';
+import Memes from './Memes';
+import AddMemeForm from './AddMemeForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -115,13 +115,9 @@ function App() {
 		},
 	]);
 
-	const [hotMemes, setHotMemes] = useState([]);
-	const [regularMemes, setRegularMemes] = useState([]);
-
-	useEffect(() => {
-		updateMemeLists(memes);
-	}, [memes]);
-
+	const handleAddMeme = (newMeme) => {
+		setMemes([newMeme, ...memes]);
+	};
 	const handleUpvote = (id) => {
 		const updatedMemes = memes.map((meme) => {
 			if (meme.id === id) {
@@ -150,68 +146,54 @@ function App() {
 		setMemes(updatedMemes);
 	};
 
-	const handleAddMeme = (newMeme) => {
-		setMemes([newMeme, ...memes]);
-	};
-
-	const updateMemeLists = (updatedMemes) => {
-		const hotMemes = updatedMemes.filter(
-			(meme) => meme.likes - meme.dislikes > 5
-		);
-		const regularMemes = updatedMemes.filter(
-			(meme) => meme.likes - meme.dislikes <= 5
-		);
-		setHotMemes(hotMemes);
-		setRegularMemes(regularMemes);
-	};
-
 	return (
 		<BrowserRouter>
-		<div className="container px-0">
-
-			<header>
-				<h1>Nic śmiesznego...</h1>
-			</header>
-			<div className='content-wrapper'>
-				<aside>
-					<Navigation />
-				</aside>
-				<main>
-					<Routes>
-						<Route
-							path='/regular'
-							element={
-								<Regular
-									memes={regularMemes}
-									handleUpvote={handleUpvote}
-									handleDownvote={handleDownvote}
-									handleAddMeme={handleAddMeme}
-								/>
-							}
-						/>
-						<Route
-							path='/hot'
-							element={
-								<Hot
-									memes={hotMemes}
-									handleUpvote={handleUpvote}
-									handleDownvote={handleDownvote}
-								/>
-							}
-						/>
-						<Route path='/' element={<Navigate to='/regular' replace />} />
-					</Routes>
-				</main>
+			<div className='container px-0'>
+				<header>
+					<h1>Nic śmiesznego...</h1>
+				</header>
+				<div className='content-wrapper'>
+					<aside>
+						<Navigation />
+					</aside>
+					<main>
+						<Routes>
+							<Route path='/' element={<Navigate to='/regular' replace />} />
+							<Route
+								path='/regular'
+								element={
+									<div className='regular-container p-0'>
+										<section className='memes-container'>
+											<div className='row justify-content-center'>
+												<AddMemeForm handleAddMeme={handleAddMeme} />
+												<Memes
+													memes={memes}
+													handleUpvote={handleUpvote}
+													handleDownvote={handleDownvote}
+													isHot={false}
+												/>
+											</div>
+										</section>
+									</div>
+								}
+							/>
+							<Route
+								path='/hot'
+								element={
+									<Memes
+										memes={memes}
+										handleUpvote={handleUpvote}
+										handleDownvote={handleDownvote}
+										isHot={true}
+									/>
+								}
+							/>
+						</Routes>
+					</main>
+				</div>
 			</div>
-
-			<footer>
-				<p> Copyright &copy; by ... </p>
-			</footer>
-		</div>
 		</BrowserRouter>
 	);
 }
-
-
 
 export default App;
